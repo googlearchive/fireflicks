@@ -1,0 +1,15 @@
+{
+  "extends": "tslint:latest",
+  "rules": {
+    "member-ordering": [true,
+      "public-before-private",
+      "static-before-instance",
+      "variables-before-functions"
+    ],
+    "no-console": false,
+    "no-implicit-dependencies": [true, "dev"],
+    "max-line-length": [true, 120],
+    "quotemark": [true, "single", "avoid-escape"],
+    "variable-name": [true, "ban-keywords", "check-format"]
+  }
+}

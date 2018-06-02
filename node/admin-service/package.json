@@ -1,0 +1,19 @@
+{
+  "name": "fireflicks-admin-service",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "npm run build-ts && npm run tslint",
+    "build-ts": "tsc",
+    "serve": "node dist/app.js",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "firebase-admin": "^5.12.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "typescript": "^2.7.2",
+    "tslint": "^5.9.1"
+  }
+}
