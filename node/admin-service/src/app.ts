@@ -16,18 +16,34 @@ class HttpError extends Error {
 const app = express();
 admin.initializeApp();
 
+const enableAuth: boolean = false;
+
 app.use(express.json());
 app.use(async (req, res, next) => {
-  const idToken = req.header('X-Firebase-ID-Token');
-  if (!idToken) {
-    return next(new HttpError('ID token not specified', 401));
-  }
-  try {
-    await fireflicks.checkAuth(idToken);
-  } catch (err) {
-    return next(new HttpError('Request not authorized', 401, err));
+  if (enableAuth) {
+    const idToken = req.header('X-Firebase-ID-Token');
+    if (!idToken) {
+      return next(new HttpError('ID token not specified', 401));
+    }
+    try {
+      await fireflicks.checkAuth(idToken);
+    } catch (err) {
+      return next(new HttpError('Request not authorized', 401, err));
+    }
   }
   next();
+});
+
+app.get('/movies/:movieId', async (req, res, next) => {
+  try {
+    const movie = await fireflicks.getMovie(req.params.movieId);
+    if (movie === null) {
+      return next(new HttpError(`No movie found for ID: ${req.params.movieId}`, 404));
+    }
+    res.json(movie);
+  } catch (err) {
+    return next(new HttpError('Failed to retrieve movie', 500, err));
+  }
 });
 
 app.post('/moderators', async (req, res, next) => {
@@ -44,10 +60,6 @@ app.post('/moderators', async (req, res, next) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000');
-});
-
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
   let status: number = 500;
   let details: any;
@@ -60,4 +72,8 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
     details,
     message: err.message,
   });
+});
+
+app.listen(3000, () => {
+  console.log('Example app listening on port 3000');
 });

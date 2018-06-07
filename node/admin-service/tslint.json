@@ -1,6 +1,7 @@
 {
   "extends": "tslint:latest",
   "rules": {
+    "interface-name": false,
     "member-ordering": [true,
       "public-before-private",
       "static-before-instance",
