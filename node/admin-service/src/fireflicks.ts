@@ -112,7 +112,7 @@ export async function addMovie(movie: Movie): Promise<string> {
 
 export async function checkAuth(idToken: string): Promise<void> {
   const decoded = await admin.auth().verifyIdToken(idToken);
-  if (decoded.admin !== true) {
-    throw new Error('User does not have admin privileges');
+  if (decoded.moderator !== true) {
+    throw new Error('User does not have moderator privileges');
   }
 }

@@ -13,10 +13,14 @@ class HttpError extends Error {
   }
 }
 
-const app = express();
-admin.initializeApp();
+const serviceAccount = require('../../../serviceAccountKey.json');
 
-const enableAuth: boolean = false;
+const app = express();
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
+const enableAuth: boolean = true;
 
 app.use(express.json());
 app.use(async (req, res, next) => {
@@ -77,6 +81,7 @@ app.post('/moderators', async (req, res, next) => {
 });
 
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.log(err);
   let status: number = 500;
   let details: any;
   if (err instanceof HttpError) {
