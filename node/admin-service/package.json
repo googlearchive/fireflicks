@@ -1,0 +1,26 @@
+{
+  "name": "fireflicks-admin-service",
+  "version": "0.0.1",
+  "description": "FireFlicks admin service implementation in Node.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firebase/fireflicks"
+  },
+  "scripts": {
+    "build": "npm run build-ts && npm run tslint",
+    "build-ts": "tsc",
+    "serve": "node dist/app.js",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "upload-data": "node dist/upload.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "firebase-admin": "^5.12.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "typescript": "^2.7.2",
+    "tslint": "^5.9.1"
+  }
+}
