@@ -48,5 +48,4 @@ $ curl -v http://localhost:8080/movies/test
 ```
 
 The server authorizes incoming requests by default. And without a valid ID
-token on the request, the server will return `401 Unauthorized` responses by
-default.
+token on the request, the server will return `401 Unauthorized` responses.
