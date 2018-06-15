@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="/src/assets/Popcorn_Sparky.png" />
+    <meta name="google-signin-client_id" content="733789900791-uhdh1c2iu1n4md8dml6s7fkeaulsu6i4.apps.googleusercontent.com">
+    <meta name="google-signin-cookiepolicy" content="single_host_origin">
+    <meta name="google-signin-scope" content="profile email">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FireFlicks</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <router-view></router-view>
+    </div>
+    <script src="/dist/build.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script> 
+  </body>
+</html>

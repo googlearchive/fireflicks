@@ -1,0 +1,561 @@
+#toolbar {
+  display: grid;
+  grid-template-areas:
+    "fire sparky flicks"
+    "topnav topnav topnav";
+  grid-template-columns: 1fr fit-content(100%) 1fr;
+  grid-gap: 2px;
+  font-size: 17px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fire {
+  grid-area: fire;
+  justify-self: right;
+  align-self: end;
+  text-align: end;
+}
+
+.flicks {
+  grid-area: flicks;
+  justify-self: left;
+  align-self: end;
+}
+
+.topnav {
+  grid-area: topnav;
+  background-color: #e9e9e9;
+  height: 50px;
+  display: grid;
+  grid-template-areas: "home dropdownmymovies dropdownadmin dropdown blank search login";
+  grid-template-columns:
+    fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%)
+    fit-content(100%) 3fr fit-content(100%);
+  grid-gap: 2px;
+
+  /* Style the links inside the navigation bar */
+  a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    // font-size: 1.7vw;
+
+    // hide some options like filtering and search, for some views
+    &.hide {
+      display: none;
+    }
+
+    /* Change the color of links on hover */
+    &:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Style the "active" element to highlight the current page */
+    &.router-link-exact-active {
+      background-color: #536dfe;
+      color: white;
+    }
+
+    &.display-when-collapsed {
+      grid-area: home;
+    }
+  }
+
+  .login {
+    grid-area: login;
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+    /* Change the color of links on hover */
+    &:hover {
+      background-color: #ddd;
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+  .admin {
+    grid-area: admin;
+    display: block;
+    // if no admin privilege, hide
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .dropdown-my-movies {
+    float: left;
+    position: relative;
+    grid-area: dropdownmymovies;
+
+    .dropbtn-mymovies {
+      background-color: #e9e9e9;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown-content-mymovies {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+
+      /* Links inside the dropdown */
+      a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        text-align: left;
+        width: 100%;
+        background-color: #eeeeee;
+
+        /* Change color of dropdown links on hover */
+        &:hover {
+          background-color: #ddd;
+          cursor: pointer;
+        }
+
+        /* Style the "active" element to highlight the current page */
+        &.router-link-exact-active {
+          background-color: #536dfe;
+          color: white;
+        }
+      }
+    }
+    &:hover {
+      /* Show the dropdown menu on hover */
+      .dropdown-content-mymovies {
+        display: block;
+        background-color: #eeeeee;
+      }
+
+      /* Change the background color of the dropdown button when the dropdown content is shown */
+      .dropbtn-mymovies {
+        background-color: #ddd;
+        color: black;
+      }
+    }
+  }
+
+  .dropdown-admin {
+    float: left;
+    position: relative;
+    grid-area: dropdownadmin;
+    &.hidden {
+      display: none;
+    }
+
+    /* Dropdown Button */
+    .dropbtn-admin {
+      background-color: #e9e9e9;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown-content-admin {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+
+      /* Links inside the dropdown */
+      a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        text-align: left;
+        width: 100%;
+        background-color: #eeeeee;
+
+        /* Change color of dropdown links on hover */
+        &:hover {
+          background-color: #ddd;
+          cursor: pointer;
+        }
+      }
+    }
+    &:hover {
+      /* Show the dropdown menu on hover */
+      .dropdown-content-admin {
+        display: block;
+        //background-color: #eeeeee;
+        background-color: teal;
+      }
+
+      /* Change the background color of the dropdown button when the dropdown content is shown */
+      .dropbtn-admin {
+        background-color: #ddd;
+        color: black;
+      }
+    }
+    /* Style the "active" element to highlight the current page */
+    &.router-link-exact-active {
+      background-color: #536dfe;
+      color: white;
+    }
+  }
+
+  /* Hide the link that should open and close the topnav on small screens */
+  .icon {
+    display: none;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    &.hide {
+      display: none;
+    }
+
+    float: left;
+    position: relative;
+    grid-area: dropdown;
+
+    /* Dropdown Button */
+    .dropbtn {
+      background-color: #e9e9e9;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 175px;
+    height: 300px;
+    overflow: auto;
+
+    /* Links inside the dropdown */
+    a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      text-align: left;
+      width: 100%;
+      background-color: #eeeeee;
+
+      /* Change color of dropdown links on hover */
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+    .container {
+      white-space: nowrap;
+    }
+
+    .checks {
+      color: black;
+      padding: 12px;
+      text-decoration: none;
+      text-align: left;
+      // width: 100%;
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+
+    .checkmark {
+      float: left;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .dropdown:hover {
+    /* Show the dropdown menu on hover */
+    .dropdown-content {
+      display: block;
+      background-color: #eeeeee;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropbtn {
+      background-color: #ddd;
+      color: black;
+    }
+  }
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav {
+    grid-template-areas: "icon home search";
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100%;
+    grid-gap: 0px;
+
+    // hide the elements
+    a:not(.display-when-collapsed) {
+      display: none;
+    }
+    .dropdown {
+      display: none;
+    }
+    .dropdown-my-movies {
+      display: none;
+    }
+    .dropdown-admin {
+      display: none;
+    }
+    .login {
+      display: none;
+    }
+    // show the hamburger icon
+    a.icon {
+      grid-area: icon;
+      float: right;
+      display: block;
+    }
+    // display the elements when responsive
+    &.responsive {
+      grid-template-areas:
+        "icon"
+        "home"
+        "login"
+        "dropdownmymovies"
+        "dropdownadmin"
+        "dropdown";
+      grid-template-columns: 1fr;
+      grid-template-rows:
+        fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%)
+        fit-content(100%) fit-content(100%);
+      grid-gap: 0px;
+      // When MyMovies is selected, turn off other parts of toolbar
+      &.clickedmovies {
+        grid-template-areas:
+          "icon"
+          "home"
+          "login"
+          "dropdownmymovies";
+        .dropdown {
+          display: none;
+        }
+        .dropbtn-admin {
+          display: none;
+        }
+        .dropdown-my-movies {
+          float: left;
+          display: block;
+          text-align: left;
+          width: 100%;
+          display: block;
+
+          .dropbtn-mymovies {
+            width: 100%;
+            display: block;
+            text-align: left;
+            background-color: #abd0f2;
+            &:hover {
+              background-color: #ddd;
+            }
+          }
+          .dropdown-content-mymovies {
+            display: block;
+            width: 100%;
+            // used to show the dropdown menu
+            a {
+              display: block;
+            }
+          }
+        }
+      }
+      // When admin is selected, turn off other parts of toolbar
+      &.clickedadmin {
+        grid-template-areas:
+          "icon"
+          "home"
+          "login"
+          "dropdownadmin";
+        .dropdown {
+          display: none;
+        }
+        .dropbtn-mymovies {
+          display: none;
+        }
+        .dropdown-admin {
+          float: left;
+          display: block;
+          text-align: left;
+          width: 100%;
+          .dropbtn-admin {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background-color: #abd0f2;
+            &:hover {
+              background-color: #ddd;
+            }
+          }
+          .dropdown-content-admin {
+            display: block;
+            width: 100%;
+            // used to show the dropdown menu
+            a {
+              display: block;
+            }
+          }
+        }
+      }
+      &.clickedgenre {
+        a {
+          display: none;
+        }
+        .dropbtn-mymovies {
+          display: none;
+        }
+        .dropbtn-admin {
+          display: none;
+        }
+        grid-template-areas:
+          "icon"
+          "home"
+          "login"
+          "dropdown";
+        .dropdown {
+          float: left;
+          display: block;
+          text-align: left;
+          width: 100%;
+          .dropbtn {
+            // width: 100%;
+            text-align: left;
+            background-color: #eeeeee;
+            &:hover {
+              background-color: #ddd;
+            }
+          }
+          .dropdown-content {
+            width: 100%;
+            display: block;
+          }
+        }
+      }
+      a {
+        background-color: #eeeeee;
+        text-align: left;
+        z-index: 4;
+        &.router-link-exact-active {
+          background-color: #536dfe;
+          color: white;
+        }
+        .icon {
+          width: 100%;
+          text-align: right;
+        }
+        &:hover:not(.router-link-exact-active) {
+          background-color: #ddd;
+        }
+      }
+      .login {
+        background-color: #eeeeee;
+        display: block;
+        text-align: left;
+        z-index: 4;
+        &.router-link-exact-active {
+          background-color: #536dfe;
+          color: white;
+        }
+        &:hover {
+          background-color: #ddd;
+          cursor: pointer;
+        }
+      }
+      .dropdown {
+        // hide some options like filtering and search, for some views
+        &.hide {
+          display: none;
+        }
+        float: left;
+        display: block;
+        text-align: left;
+        width: 100%;
+        .dropbtn {
+          width: 100%;
+          text-align: left;
+          background-color: #eeeeee;
+          &.router-link-exact-active {
+            background-color: #536dfe;
+            color: white;
+          }
+          &:hover {
+            background-color: #ddd;
+            cursor: pointer;
+          }
+        }
+        .dropdown-content {
+          display: none;
+        }
+      }
+
+      .dropdown-my-movies {
+        float: left;
+        display: block;
+        text-align: left;
+        width: 100%;
+        .dropbtn-mymovies {
+          width: 100%;
+          text-align: left;
+          background-color: #eeeeee;
+          &.router-link-exact-active {
+            background-color: #536dfe;
+            color: white;
+          }
+          &:hover {
+            background-color: #ddd;
+            cursor: pointer;
+          }
+        }
+        .dropdown-content-mymovies {
+          display: none;
+        }
+      }
+
+      .dropdown-admin {
+        float: left;
+        display: block;
+        text-align: left;
+        width: 100%;
+        &.hidden {
+          display: none;
+        }
+        .dropbtn-admin {
+          width: 100%;
+          text-align: left;
+          background-color: #eeeeee;
+          &:hover {
+            background-color: #ddd;
+            cursor: pointer;
+          }
+          &.router-link-exact-active {
+            background-color: #536dfe;
+            color: white;
+          }
+        }
+        .dropdown-content-admin {
+          display: none;
+        }
+      }
+    }
+  }
+}

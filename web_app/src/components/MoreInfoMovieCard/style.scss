@@ -1,0 +1,193 @@
+.modal {
+  user-select: none;
+  -webkit-user-select: none;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  padding-top: 100px; /* Location of the box */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  overflow: auto; /* Enable scroll if needed */
+  //background-color: rgb(0, 0, 0); /* Fallback color */
+  //background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+  background-color: rgba(83, 109, 254, 0.9);
+  .background-poster {
+    opacity: 90%;
+    width: 400px;
+    top: 0px;
+    right: 0px;
+    height: 400px;
+    position: absolute;
+  }
+  .movie {
+    margin: 12px 40px 12px 40px;
+    background-color: rgba(238, 238, 238, 1);
+    display: grid;
+    grid-template-areas:
+      "close add add"
+      "title title title"
+      "poster stars stars"
+      "poster desc desc"
+      "poster button genres"
+      "poster empty genres";
+    grid-template-columns: fit-content(100%) fit-content(100%) fit-content(100%);
+    grid-template-rows: 0.5fr 35px fit-content(100%) fit-content(100%) fit-content(
+        100%
+      );
+    grid-gap: 8px;
+    //background-color: #EEEEEE;
+    padding: 40px 40px 40px 40px;
+
+    /* The Close Button */
+    .close {
+      grid-area: close;
+      color: #536dfe;
+      //font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      //justify-self: left;
+      align-self: flex-start;
+      justify-self: flex-start;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    // .add {
+    //   grid-area: add;
+    //   color: #536dfe;
+    //   //justify-self: right;
+    //   align-self: flex-start;
+    //   justify-self: flex-end;
+    // }
+    .poster {
+      width: 100px;
+      grid-area: poster;
+    }
+    .title {
+      grid-area: title;
+      justify-self: center;
+      align-self: center;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .description {
+      text-align: left;
+      margin-left: 15px;
+      grid-area: desc;
+    }
+    .stars {
+      color: #ffd500;
+      grid-area: stars;
+      justify-self: left;
+    }
+    .genres {
+      text-align: right;
+      font-style: italic;
+      font-size: 0.8em;
+      grid-area: genres;
+    }
+
+    button {
+      grid-area: button;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      grid-area: add;
+      align-self: flex-start;
+      justify-self: flex-end;
+      position: relative;
+
+      /* Dropdown Button */
+      .dropbtn {
+        color: #536dfe;
+      }
+      // Appearence when not hovering
+      &:not(:hover) {
+        .dropdown-content {
+          width: 0px;
+          height: 0px;
+          overflow: hidden;
+        }
+      }
+      // Appearence when hovering
+      &:hover {
+        /* Show the dropdown menu on hover */
+        .dropdown-content {
+          display: block;
+          //float: right;
+          justify-self: center;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropbtn {
+          background-color: #ddd;
+          color: black;
+        }
+      }
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      // display: none;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      //float: right;
+      background-color: #f1f1f1;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      //z-index: 1;
+      width: 120px;
+
+      /* Links inside the dropdown */
+      .content {
+        color: black;
+        padding: 6px 6px;
+        text-decoration: none;
+        &:hover {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .modal {
+    .movie {
+      grid-template-areas:
+        "close add add"
+        "title title title"
+        "stars stars stars"
+        "poster poster poster"
+        "desc desc desc"
+        "desc desc desc"
+        "button button genres"
+        "empty empty genres";
+      grid-template-columns: fit-content(100%) fit-content(100%) 1fr; //fit-content(100%);
+      grid-template-rows: 15px 45px fit-content(100%) fit-content(100%) fit-content(
+          100%
+        );
+
+      .dropdown {
+        justify-self: right;
+        align-self: flex-start;
+      }
+
+      .poster {
+        justify-self: center;
+      }
+
+      .stars {
+        justify-self: center;
+      }
+    }
+  }
+}

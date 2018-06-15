@@ -1,0 +1,41 @@
+.reviewcard {
+  grid-area: slot;
+  display: grid;
+  grid-template-areas:
+    "labelrating rating rating"
+    "labeltext text text";
+  grid-template-columns: fit-content(100%) fit-content(100%); //fit-content(100%);
+  grid-gap: 18px;
+  background-color: #eeeeee;
+  padding: 10px 0px 10px 0px;
+  .label-rating {
+    grid-area: labelrating;
+  }
+  .stars {
+    grid-area: rating;
+    justify-self: left;
+    font-size: 1.5em;
+    color: #ffd500;
+  }
+  .label-text {
+    grid-area: labeltext;
+  }
+  .reviewtext {
+    font-size: 1.2em;
+    grid-area: text;
+    justify-self: left;
+  }
+}
+
+.review {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  padding-top: 100px; /* Location of the box */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  overflow: auto; /* Enable scroll if needed */
+  //background-color: rgb(0, 0, 0); /* Fallback color */
+  //background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}

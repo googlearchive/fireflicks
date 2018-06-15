@@ -1,0 +1,25 @@
+
+      <div id="moviecard" class="movie">
+      <div class="dropdown">
+          <div class="dropbtn" :class="{minus: isMyMovie}">
+              <i class="material-icons">more_horiz</i> 
+          </div>
+          <div class="dropdown-content">
+              <div class="content" @click="changeLibrary(isMyMovie)">{{libraryMessage}}</div> 
+              <div class="content" @click="addReview(movie)">{{reviewMessage}}</div> 
+          </div>
+          </div>
+      <h3 class=title>{{movie.title}}</h3>
+      <div class="stars">
+        <i v-for="s in 5" class="material-icons">
+          <span v-if="movie.averageRating < s && movie.averageRating+0.5<s ">star_border</span>
+          <span v-else-if="movie.averageRating < s && movie.averageRating+0.5>=s ">star_half</span>
+          <span v-else-if="movie.averageRating >= s">star</span>
+        </i>
+      </div>
+      <img :src="movie.poster">
+      <div class="description">{{movie.overview}}</div>
+      <button @click="more_movie_info(movie)">More Info</button>
+      <div class="genres">{{movie.genreList}}</div>
+      <slot></slot>
+  </div>

@@ -1,0 +1,104 @@
+#myreviews {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  display: grid;
+  grid-template-areas:
+    "toolbar toolbar toolbar toolbar toolbar"
+    "movies movies movies movies movies"
+    "blank1 blank2 loadmore blank3 blank4"
+    "blank35 blank6 blank7 blank8 scrolltotop";
+  grid-template-columns: 1fr 1fr 100px 1fr 1fr;
+  grid-gap: 2px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h1,
+h2 {
+  font-weight: normal;
+  margin: auto;
+  width: 100%;
+  margin-top: 15px;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+.toolbar {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  grid-area: toolbar;
+}
+
+.movies {
+  background-color: #eeeeee;
+  overflow: auto;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  width: 45%;
+  height: 400px;
+  float: left;
+  border-radius: 4px;
+  border: 5px double #abd0f2;
+}
+
+.allmovies {
+  grid-area: movies;
+}
+
+.loadmore {
+  grid-area: loadmore;
+}
+
+.scrolltotop {
+  grid-area: scrolltotop;
+  z-index: 3;
+  border: none;
+  outline: none;
+  background-color: #abd0f2;
+  opacity: 80%;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  margin: 30px;
+  border-radius: 2px;
+  font-size: 1.1em;
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+.modal {
+  z-index: 4;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .movies {
+    float: center;
+    width: 90%;
+  }
+}

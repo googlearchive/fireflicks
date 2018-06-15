@@ -1,0 +1,13 @@
+  <div id="mymovies">
+    <toolbar @login="onLogin" @filter-change="onFilterChanged" class="toolbar"></toolbar>
+      <ul class="allmovies">
+        <li class="movies" v-for="movie in movies">
+        <moviecard :movie="movie" @more-info="onLoadMoreInfo" @add-review="onAddReview"></moviecard>
+        </li>
+      </ul>
+      <button v-if="more_movies_found" class=loadmore @click="loadMyMovies(true)">Load More</button>
+      <div v-if="!more_movies_found">{{no_movies_found_error_message}}</div>
+     <more-info-moviecard :movie="more_info_movie" v-if="more_info_movie" @close="more_info_movie = false"></more-info-moviecard>
+     <add-review-modal :movie="add_review_movie" v-if="add_review_movie" @close="add_review_movie = false"></add-review-modal>
+     <button v-if="movies.length > 10" @click="topFunction()" class="scrolltotop">Scroll to Top ^</button>
+  </div>

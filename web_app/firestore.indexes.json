@@ -1,0 +1,45 @@
+{
+  "indexes": [
+    {
+        "collectionId": "movies",
+        "fields": [
+          { "fieldPath": "genres.action", "mode": "ASCENDING"},
+          { "fieldPath": "genres.action", "mode": "DESCENDING"},
+          { "fieldPath": "genres.adventure", "mode": "ASCENDING"},
+          { "fieldPath": "genres.adventure", "mode": "DESCENDING"},
+          { "fieldPath": "genres.animation", "mode": "ASCENDING"},
+          { "fieldPath": "genres.animation", "mode": "DESCENDING"},
+          { "fieldPath": "genres.crime", "mode": "ASCENDING"},
+          { "fieldPath": "genres.crime", "mode": "DESCENDING"},
+          { "fieldPath": "genres.comedy", "mode": "ASCENDING"},
+          { "fieldPath": "genres.comedy", "mode": "DESCENDING"},
+          { "fieldPath": "genres.documentary", "mode": "ASCENDING"},
+          { "fieldPath": "genres.documentary", "mode": "DESCENDING"},
+          { "fieldPath": "genres.drama", "mode": "ASCENDING"},
+          { "fieldPath": "genres.drama", "mode": "DESCENDING"},
+          { "fieldPath": "genres.family", "mode": "ASCENDING"},
+          { "fieldPath": "genres.family", "mode": "DESCENDING"},
+          { "fieldPath": "genres.fantasy", "mode": "ASCENDING"},
+          { "fieldPath": "genres.fantasy", "mode": "DESCENDING"},
+          { "fieldPath": "genres.history", "mode": "ASCENDING"},
+          { "fieldPath": "genres.history", "mode": "DESCENDING"},
+          { "fieldPath": "genres.horror", "mode": "ASCENDING"},
+          { "fieldPath": "genres.horror", "mode": "DESCENDING"},
+          { "fieldPath": "genres.music", "mode": "ASCENDING"},
+          { "fieldPath": "genres.music", "mode": "DESCENDING"},
+          { "fieldPath": "genres.mystery", "mode": "ASCENDING"},
+          { "fieldPath": "genres.mystery", "mode": "DESCENDING"},
+          { "fieldPath": "genres.romance", "mode": "ASCENDING"},
+          { "fieldPath": "genres.romance", "mode": "DESCENDING"},
+          { "fieldPath": "genres.scifi", "mode": "ASCENDING"},
+          { "fieldPath": "genres.scifi", "mode": "DESCENDING"},
+          { "fieldPath": "genres.thriller", "mode": "ASCENDING"},
+          { "fieldPath": "genres.thriller", "mode": "DESCENDING"},
+          { "fieldPath": "genres.war", "mode": "ASCENDING"},
+          { "fieldPath": "genres.war", "mode": "DESCENDING"},
+          { "fieldPath": "genres.western", "mode": "ASCENDING"},
+          { "fieldPath": "genres.western", "mode": "DESCENDING"}
+        ]
+    }
+  ]
+}

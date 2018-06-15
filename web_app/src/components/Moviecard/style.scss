@@ -1,0 +1,129 @@
+#moviecard {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.movie {
+  display: grid;
+  grid-template-areas:
+    "add add add"
+    "title title title"
+    "poster stars stars"
+    "poster desc desc"
+    "poster button genres"
+    "poster empty genres"
+    "slot slot slot";
+  grid-template-columns: fit-content(100%) fit-content(100%) 1fr;
+  grid-template-rows: 15px 35px fit-content(100%) 114px fit-content(100%);
+  grid-gap: 8px;
+  font-size: 12pt;
+
+  img {
+    width: 100px;
+    grid-area: poster;
+  }
+  .title {
+    grid-area: title;
+    justify-self: center;
+    align-self: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .description {
+    text-align: left;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    grid-area: desc;
+  }
+  .stars {
+    color: #ffd500;
+    grid-area: stars;
+    justify-self: left;
+  }
+  .genres {
+    text-align: right;
+    font-style: italic;
+    font-size: 0.6em;
+    grid-area: genres;
+  }
+
+  button {
+    grid-area: button;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  slot {
+    grid-area: slot;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    grid-area: add;
+    justify-self: right;
+    position: relative;
+
+    /* Dropdown Button */
+    .dropbtn {
+      z-index: 2;
+      color: #536dfe;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &:not(:hover) {
+      .dropdown-content {
+        width: 0px;
+        height: 0px;
+        overflow: hidden;
+      }
+    }
+
+    &:hover {
+      /* Show the dropdown menu on hover */
+      .dropdown-content {
+        display: block;
+        float: right;
+        cursor: pointer;
+      }
+
+      /* Change the background color of the dropdown button when the dropdown content is shown */
+      .dropbtn {
+        background-color: #ddd;
+        color: black;
+      }
+    }
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    // display: none;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    //float: right;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    //z-index: 1;
+    width: 120px;
+
+    /* Links inside the dropdown */
+    .content {
+      color: black;
+      padding: 6px 6px;
+      text-decoration: none;
+    }
+
+    .content:hover {
+      background-color: #ddd;
+    }
+  }
+}
