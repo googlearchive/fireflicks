@@ -109,12 +109,7 @@ export default class AdminAddMovie extends Vue {
     return http.status != 404;
   }
 
-  // write movie to database
-  async onPublishMovie() {
-    // if fields aren't correct, exit function
-    if (!this.verifyFields()) {
-      return;
-    }
+  async getMovie() {
     let trueFilters = {};
     // get only the filters that are checked
     Object.keys(this.filters).forEach(key => {
@@ -128,6 +123,16 @@ export default class AdminAddMovie extends Vue {
       overview: this.movie_description,
       poster: this.image_url,
     }
+    return movie;
+  }
+
+  // write movie to database
+  async onPublishMovie() {
+    // if fields aren't correct, exit function
+    if (!this.verifyFields()) {
+      return;
+    }
+    const movie = await this.getMovie();
     const token = await this.fst.auth.currentUser.getIdToken();
     const result = await this.postData(`${this.base_url}movies`, movie, token);
     alert(result);
