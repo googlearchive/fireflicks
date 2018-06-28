@@ -23,7 +23,7 @@ import FirebaseSingleton from "../../services/FirebaseSingleton";
     Toolbar, 
   }
 })
-export default class AdminAddAdmin extends Vue {
+export default class ModAddMod extends Vue {
   base_url = "http://localhost:3000/";
   fst: FirebaseSingleton;
   userId: string;
@@ -55,15 +55,14 @@ export default class AdminAddAdmin extends Vue {
     return true;
   }
 
-
-  async onAddAdminUser() {
+  async onAddModerator() {
     const token = await this.fst.auth.currentUser.getIdToken()
     const user = {
       email: this.user_email
     }
     if (this.verifyEmail()) {
-      const result = await this.postData(`${this.base_url}admin_users`, user, token)
-      alert(`Successfully Added new Admin ${this.user_email}`);
+      await this.postData(`${this.base_url}admin_users`, user, token)
+      alert(`Successfully Added new Moderator ${this.user_email}`);
       this.user_email = "";
     }
   }
@@ -85,4 +84,4 @@ export default class AdminAddAdmin extends Vue {
   }
 }
 
-require("./template.html")(AdminAddAdmin);
+require("./template.html")(ModAddMod);

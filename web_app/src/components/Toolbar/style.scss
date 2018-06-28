@@ -42,7 +42,7 @@
   background-color: #e9e9e9;
   height: 50px;
   display: grid;
-  grid-template-areas: "home dropdownmymovies dropdownadmin dropdown blank search login";
+  grid-template-areas: "home dropdownmymovies dropdownadmin dropdown blank login";
   grid-template-columns:
     fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%)
     fit-content(100%) 3fr fit-content(100%);
@@ -59,7 +59,7 @@
     font-size: 17px;
     // font-size: 1.7vw;
 
-    // hide some options like filtering and search, for some views
+    // hide some options like filtering for some views
     &.hide {
       display: none;
     }
@@ -311,10 +311,10 @@
   }
 }
 
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+/* When the screen is less than 600px wide, stack the links vertically instead of horizontally */
 @media screen and (max-width: 600px) {
   .topnav {
-    grid-template-areas: "icon home search";
+    grid-template-areas: "icon home";
     grid-template-rows: 1fr 1fr 1fr;
     width: 100%;
     grid-gap: 0px;
@@ -496,7 +496,7 @@
         }
       }
       .dropdown {
-        // hide some options like filtering and search, for some views
+        // hide some options like filtering for some views
         &.hide {
           display: none;
         }

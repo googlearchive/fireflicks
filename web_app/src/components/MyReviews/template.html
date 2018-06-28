@@ -1,5 +1,5 @@
   <div id="myreviews">
-    <toolbar @login="onLogin" @filter-change="onFilterChanged" @more-info-search="onLoadMoreInfo" class="toolbar" :movie="more_info_movie"></toolbar>
+    <toolbar @login="onLogin" @filter-change="onFilterChanged" class="toolbar" :movie="more_info_movie"></toolbar>
     <ul class="allmovies">
         <li class="movies" v-for="(movie, index) in movies">
           <moviecard :movie="movie" @more-info="onLoadMoreInfo" @add-review="onAddReview">

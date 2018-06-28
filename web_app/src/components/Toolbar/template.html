@@ -17,13 +17,13 @@
                   </router-link>
               </div>
             </div>
-          <div class="dropdown-admin" :class="{hidden: !isAdmin, hide: isHidden}">
+          <div class="dropdown-admin" :class="{hidden: !isMod, hide: isHidden}">
             <button class="dropbtn-admin" @click="isAdminClicked = !isAdminClicked">Moderator</button>
             <div class="dropdown-content-admin">
-                <router-link class="admin-add-movie" to="/mod-add-movie" :class="{hidden: !isAdmin}">
+                <router-link class="mod-add-movie" to="/mod-add-movie" :class="{hidden: !isAdmin}">
                   Add&nbsp;New&nbsp;Movie
                 </router-link>
-                <router-link class="admin-add-admin" to="/mod-add-mod" :class="{hidden: !isAdmin}">
+                <router-link class="mod-add-mod" to="/mod-add-mod" :class="{hidden: !isAdmin}">
                   Add&nbsp;New&nbsp;Moderator
                 </router-link>
             </div>

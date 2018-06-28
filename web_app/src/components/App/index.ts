@@ -107,5 +107,4 @@ export default class App extends Vue {
   }
 }
 
-
 require("./template.html")(App);

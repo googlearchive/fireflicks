@@ -26,7 +26,6 @@ export default class FirebaseSingleton {
   provider: FirebaseAuthModule.GoogleAuthProvider;
   token: String;
   tokenIsUploaded = false;
-  firebaseui: any;
 
   required: {
     [s: string]: any;
@@ -35,14 +34,12 @@ export default class FirebaseSingleton {
   async init() {
     await Promise.all([
       System.import("firebase"),
-      System.import("firebaseui"),
       System.import("isomorphic-fetch")
     ]);
 
     this.required.firebase = require("firebase/app");
     require("firebase/firestore");
     require("isomorphic-fetch");
-    this.firebaseui = require("firebaseui");
 
     const config = await fetch("/__/firebase/init.json").then(response =>
       response.json()

@@ -28,14 +28,12 @@ export default class Toolbar extends Vue {
   fst: FirebaseSingleton;
   uid: string;
   anonUID: string;
-  searchhits:{}[] = [];
   async mounted() {
     this.dm = new DataModel();
     await this.dm.init();
     this.fst = await FirebaseSingleton.GetInstance();
     await this.checkLoginStatus();
   }
-  search = "";
   filters = { 
     action: false,
     adventure: false,
@@ -184,7 +182,7 @@ export default class Toolbar extends Vue {
   async displayUserInfo() {
     if (!this.fst.auth.currentUser.isAnonymous) {
       this.loginTitle = "Log Out";
-      this.isAdmin = await this.dm.checkIsAdmin();
+      this.isAdmin = await this.dm.checkIsMod();
     } else {
       this.loginTitle = "Log In";
     }
@@ -199,7 +197,7 @@ export default class Toolbar extends Vue {
     this.fst.auth.currentUser.linkWithPopup(this.fst.provider).then(async function(result) {
         // If we succeed, we've now modified our user (no longer anonymous)
         // so we re-render our info
-        _this.isAdmin = await _this.dm.checkIsAdmin();
+        _this.isAdmin = await _this.dm.checkIsMod();
         _this.loginTitle = "Log Out";
     }).catch(async function(error) {
         // If the link fails (because a previous anonymous account was linked)
@@ -208,7 +206,7 @@ export default class Toolbar extends Vue {
         await fst.auth.signInWithCredential(error.credential);
         _this.uid = fst.auth.currentUser.uid;
         _this.writeMoviesToNewUser(uid, movies);
-        _this.isAdmin = await _this.dm.checkIsAdmin();
+        _this.isAdmin = await _this.dm.checkIsMod();
         _this.loginTitle = "Log Out";
     });
   }

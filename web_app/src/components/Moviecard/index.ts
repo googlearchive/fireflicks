@@ -40,10 +40,6 @@ export default class Moviecard extends Vue {
   reviewMessage="Add Review";
   async mounted() {    
     this.fst = await FirebaseSingleton.GetInstance();
-    // if(this.fst.auth.currentUser==null){
-    //   await this.fst.auth.signInAnonymously();
-    // }
-    
     await Promise.all([ this.checkForMovieInUserCollection(), 
       this.checkForRatingInUserCollection() ]);
   }
@@ -79,11 +75,7 @@ export default class Moviecard extends Vue {
 
   @Prop()
   movie: Movie;
-  // @Watch("movie", {deep: true, immediate: true})
-  // onMovieChange() {
-  //   console.log(this.movie.key);
-  //   console.log(this.movie.poster);
-  // }
+
   changeLibrary(isMyMovie: boolean) {
     // if movie is in collection, remove it
     if (isMyMovie) {

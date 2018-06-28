@@ -19,8 +19,8 @@ import * as RavenVue from 'raven-js/plugins/vue';
 import App from "./components/App";
 import MyMovies from "./components/MyMovies";
 import MyReviews from "./components/MyReviews";
-import AdminAddMovie from "./components/AdminAddMovie";
-import AdminAddAdmin from "./components/AdminAddAdmin";
+import AdminAddMovie from "./components/ModAddMovie";
+import AdminAddAdmin from "./components/ModAddMod";
 
 console.log(Raven);
 
@@ -30,20 +30,6 @@ Raven
     .install();
     
 document.location.port == "5000" && alert("Please use localhost:8080 for debugging.")
-// if ("serviceWorker" in navigator) {
-//   // && !document.location.host.startsWith("localhost")) {
-//   window.addEventListener("load", async () => {
-//     try {
-//       const reg = await navigator.serviceWorker.register("/sw.js");
-//       console.log(
-//         "ServiceWorker registration successful with scope: ",
-//         reg.scope
-//       );
-//     } catch (error) {
-//       console.log("ServiceWorker registration failed :(", error);
-//     }
-//   });
-// }
 
 Vue.use(VueRouter);
 

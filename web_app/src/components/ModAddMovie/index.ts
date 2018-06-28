@@ -23,7 +23,7 @@ import FirebaseSingleton from "../../services/FirebaseSingleton";
     Toolbar, 
   }
 })
-export default class AdminAddMovie extends Vue {
+export default class ModAddMovie extends Vue {
   base_url = "http://localhost:3000/";
   fst: FirebaseSingleton;
   userId: string;
@@ -158,4 +158,4 @@ export default class AdminAddMovie extends Vue {
   }
 }
 
-require("./template.html")(AdminAddMovie);
+require("./template.html")(ModAddMovie);

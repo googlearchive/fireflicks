@@ -16,7 +16,6 @@
 import Vue from "vue";
 import { Component, Inject, Model, Prop, Watch } from "vue-property-decorator";
 import FirebaseSingleton from "../../services/FirebaseSingleton";
-import { firestore } from "firebase/app";
 import Moviecard from "../Moviecard"
 
 type Movie = {
@@ -102,12 +101,10 @@ export default class AddReviewModal extends Vue {
       let newRating = {};
       newRating[`${this.userId}`] = this.rating;
       const reviewRef = this.fst.firestore.collection("ratings").doc(`${this.movie.key}`);
-      //batch.set(newRating);
       batch.set(reviewRef, newRating, {merge: true});
       await batch.commit();
       alert("Review Submitted!");
       this.close();
-
     }
   }
 
