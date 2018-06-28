@@ -10,6 +10,7 @@
   "scripts": {
     "build": "npm run build-ts && npm run tslint",
     "build-ts": "tsc",
+    "promote": "node dist/promote.js",
     "serve": "node dist/app.js",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "upload-data": "node dist/upload.js"

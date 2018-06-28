@@ -91,7 +91,7 @@ export async function grantModeratorRole(email: string): Promise<void> {
     return;
   }
   return admin.auth().setCustomUserClaims(user.uid, {
-    admin: true,
+    moderator: true,
   });
 }
 
