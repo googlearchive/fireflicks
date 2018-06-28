@@ -17,13 +17,12 @@ import Vue from "vue";
 import { Component, Inject, Model, Prop, Watch } from "vue-property-decorator";
 import FirebaseSingleton from "../../services/FirebaseSingleton";
 import DataModel from "../../services/DataModel";
-System.import("isomorphic-fetch")
+System.import("isomorphic-fetch");
 require("isomorphic-fetch");
 
-@Component({
-})
+@Component({})
 export default class Toolbar extends Vue {
-  name = "toolbar"
+  name = "toolbar";
   dm: DataModel;
   fst: FirebaseSingleton;
   uid: string;
@@ -34,7 +33,7 @@ export default class Toolbar extends Vue {
     this.fst = await FirebaseSingleton.GetInstance();
     await this.checkLoginStatus();
   }
-  filters = { 
+  filters = {
     action: false,
     adventure: false,
     animation: false,
@@ -53,30 +52,30 @@ export default class Toolbar extends Vue {
     science_fiction: false,
     thriller: false,
     war: false,
-    western: false, 
+    western: false
   };
   filter = "";
   filtersMenu = [
-    {label: "All", model: "all"},
-    {label: "Action", model: "action"},
-    {label: "Adventure", model: "adventure"},
-    {label: "Animation", model: "animation"},
-    {label: "Children", model: "children"},
-    {label: "Crime", model: "crime"},
-    {label: "Comedy", model: "comedy"},
-    {label: "Documentary", model: "documentary"},
-    {label: "Drama", model: "drama"},
-    {label: "Family", model: "family"},
-    {label: "Fantasy", model: "fantasy"},
-    {label: "History", model: "history"},
-    {label: "Horror", model: "horror"},
-    {label: "Music", model: "music"},
-    {label: "Mystery", model: "mystery"},
-    {label: "Romance", model: "romance"},
-    {label: "Science Fiction", model: "science_fiction"},
-    {label: "Thriller", model: "thriller"},
-    {label: "War", model:"war"},
-    {label: "Western", model:"western"},
+    { label: "All", model: "all" },
+    { label: "Action", model: "action" },
+    { label: "Adventure", model: "adventure" },
+    { label: "Animation", model: "animation" },
+    { label: "Children", model: "children" },
+    { label: "Crime", model: "crime" },
+    { label: "Comedy", model: "comedy" },
+    { label: "Documentary", model: "documentary" },
+    { label: "Drama", model: "drama" },
+    { label: "Family", model: "family" },
+    { label: "Fantasy", model: "fantasy" },
+    { label: "History", model: "history" },
+    { label: "Horror", model: "horror" },
+    { label: "Music", model: "music" },
+    { label: "Mystery", model: "mystery" },
+    { label: "Romance", model: "romance" },
+    { label: "Science Fiction", model: "science_fiction" },
+    { label: "Thriller", model: "thriller" },
+    { label: "War", model: "war" },
+    { label: "Western", model: "western" }
   ];
 
   isResponsive = false;
@@ -91,11 +90,10 @@ export default class Toolbar extends Vue {
   loginTitle = "Log In";
 
   // listen for calls to hide
-  @Prop()
-  hide: boolean;
-  @Watch("hide", {deep: true, immediate: true})
+  @Prop() hide: boolean;
+  @Watch("hide", { deep: true, immediate: true })
   onHide() {
-    this.isHidden=this.hide;
+    this.isHidden = this.hide;
   }
 
   // update the currently selected filter
@@ -111,45 +109,51 @@ export default class Toolbar extends Vue {
   }
 
   async usersMovies() {
-    let userMovies: {movies: string[], ratings: string[]};
-    let [myMovies, myRatings] = await Promise.all([this.getMoviesFromQuery(`users/${this.uid}/movies`),
-    this.getMoviesFromQuery(`users/${this.uid}/ratings`)
-  ])
+    let userMovies: { movies: string[]; ratings: string[] };
+    let [myMovies, myRatings] = await Promise.all([
+      this.getMoviesFromQuery(`users/${this.uid}/movies`),
+      this.getMoviesFromQuery(`users/${this.uid}/ratings`)
+    ]);
     userMovies = {
       movies: myMovies,
       ratings: myRatings
-    }
+    };
     return userMovies;
   }
 
   async getMoviesFromQuery(collection: string) {
     let keys = [];
-    let snapshot = await this.fst.firestore
-    .collection(collection).get();
+    let snapshot = await this.fst.firestore.collection(collection).get();
     snapshot.docs.forEach(async snap => {
       keys.push(snap.id);
-    })
+    });
     return keys;
   }
 
   // used if merge isn't possible because an anon user was merged before
   async writeMovies(doc: string, movieKeys: string[]) {
     for (let key of movieKeys) {
-      console.log(`${this.uid}/${doc}/${key}`)
+      console.log(`${this.uid}/${doc}/${key}`);
       let movie = {};
       movie[key] = true;
       const ref = await this.fst.firestore
-      .collection("users").doc(`${this.uid}/${doc}/${key}`).set(movie,{merge: true})
+        .collection("users")
+        .doc(`${this.uid}/${doc}/${key}`)
+        .set(movie, { merge: true });
     }
   }
 
-  async writeMoviesToNewUser(uid: string, userMovies: {movies: string[], ratings: string[]}) {
-    await Promise.all([this.writeMovies("movies", userMovies.movies),
-    this.writeMovies("ratings", userMovies.ratings)
-  ])
+  async writeMoviesToNewUser(
+    uid: string,
+    userMovies: { movies: string[]; ratings: string[] }
+  ) {
+    await Promise.all([
+      this.writeMovies("movies", userMovies.movies),
+      this.writeMovies("ratings", userMovies.ratings)
+    ]);
     console.log("movies written to new user");
   }
-      
+
   // login functionality
 
   changeLoginStatus() {
@@ -163,18 +167,18 @@ export default class Toolbar extends Vue {
   async checkLoginStatus() {
     let fst = this.fst;
     let _this = this;
-    this.fst.auth.onAuthStateChanged(async function (user) {
+    this.fst.auth.onAuthStateChanged(async function(user) {
       // If we have no user, default to signing in anonymously
       if (!user) {
-          await fst.auth.signInAnonymously();
-          _this.anonUID = fst.auth.currentUser.uid;
-          _this.isAdmin = false;
-          _this.$emit("login");  
-        } else {
-          // Otherwise render out the info  
-          _this.uid = fst.auth.currentUser.uid;
-          _this.displayUserInfo();
-          _this.$emit("login");
+        await fst.auth.signInAnonymously();
+        _this.anonUID = fst.auth.currentUser.uid;
+        _this.isAdmin = false;
+        _this.$emit("login");
+      } else {
+        // Otherwise render out the info
+        _this.uid = fst.auth.currentUser.uid;
+        _this.displayUserInfo();
+        _this.$emit("login");
       }
     });
   }
@@ -194,12 +198,15 @@ export default class Toolbar extends Vue {
     let uid = this.fst.auth.currentUser.uid;
     let movies = await this.usersMovies();
     // Instead of logging in, we call link method
-    this.fst.auth.currentUser.linkWithPopup(this.fst.provider).then(async function(result) {
+    this.fst.auth.currentUser
+      .linkWithPopup(this.fst.provider)
+      .then(async function(result) {
         // If we succeed, we've now modified our user (no longer anonymous)
         // so we re-render our info
         _this.isAdmin = await _this.dm.checkIsMod();
         _this.loginTitle = "Log Out";
-    }).catch(async function(error) {
+      })
+      .catch(async function(error) {
         // If the link fails (because a previous anonymous account was linked)
         // then we just sign in as the existing user (which will toss all changes into the ether)
         // but hopefully we don't hit this much.
@@ -208,16 +215,15 @@ export default class Toolbar extends Vue {
         _this.writeMoviesToNewUser(uid, movies);
         _this.isAdmin = await _this.dm.checkIsMod();
         _this.loginTitle = "Log Out";
-    });
+      });
   }
 
   async logOut() {
     this.fst = await FirebaseSingleton.GetInstance();
-    await this.fst.auth.signOut(); 
+    await this.fst.auth.signOut();
     this.loginTitle = "Log In";
     this.isAdmin = false;
   }
-
 }
 
 require("./template.html")(Toolbar);

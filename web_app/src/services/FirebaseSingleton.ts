@@ -52,7 +52,7 @@ export default class FirebaseSingleton {
     this.provider = new this.required.firebase.auth.GoogleAuthProvider();
     return this;
   }
-  
+
   public static async GetInstance() {
     if (singleton) {
       return singleton;

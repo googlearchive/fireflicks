@@ -28,7 +28,7 @@ type Movie = {
   averageRating: number;
   overview: string;
   poster: string;
-  genres: {string: boolean};
+  genres: { string: boolean };
   genreList: string;
   key: string;
 };
@@ -39,10 +39,10 @@ type Review = {
 
 @Component({
   components: {
-    Toolbar, 
-    Moviecard, 
+    Toolbar,
+    Moviecard,
     MoreInfoMoviecard,
-    AddReviewModal,
+    AddReviewModal
   }
 })
 export default class App extends Vue {
@@ -52,9 +52,9 @@ export default class App extends Vue {
   fst: FirebaseSingleton;
   dm: DataModel;
   lastMovie: FirestoreModule.DocumentSnapshot;
-  more_movies_found=false;
+  more_movies_found = false;
   userId: string;
-  no_movies_found_error_message="No more movies match your criteria";
+  no_movies_found_error_message = "No more movies match your criteria";
   async mounted() {
     this.dm = new DataModel();
     this.fst = await FirebaseSingleton.GetInstance();
@@ -67,15 +67,20 @@ export default class App extends Vue {
     await this.dm.init();
     const collection = "movies";
     const type = "app";
-    const updateResult = await this.dm.loadMovies(loadMore, collection, this.lastMovie, 
-      this.filter, this.more_movies_found, 
-      this.movies, this.reviews,
+    const updateResult = await this.dm.loadMovies(
+      loadMore,
+      collection,
+      this.lastMovie,
+      this.filter,
+      this.more_movies_found,
+      this.movies,
+      this.reviews,
       type
-    )
+    );
     this.more_movies_found = updateResult.more_movies_found;
     if (this.more_movies_found) {
       this.lastMovie = updateResult.lastMovie;
-      this.movies = updateResult.movies
+      this.movies = updateResult.movies;
     }
   }
 
@@ -102,8 +107,8 @@ export default class App extends Vue {
   }
 
   topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 }
 

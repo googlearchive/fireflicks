@@ -45,7 +45,7 @@
   grid-template-areas: "home dropdownmymovies dropdownadmin dropdown blank login";
   grid-template-columns:
     fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%)
-    fit-content(100%) 3fr fit-content(100%);
+    3fr fit-content(100%);
   grid-gap: 2px;
 
   /* Style the links inside the navigation bar */

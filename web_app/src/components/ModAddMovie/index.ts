@@ -20,7 +20,7 @@ import FirebaseSingleton from "../../services/FirebaseSingleton";
 
 @Component({
   components: {
-    Toolbar, 
+    Toolbar
   }
 })
 export default class ModAddMovie extends Vue {
@@ -28,8 +28,8 @@ export default class ModAddMovie extends Vue {
   fst: FirebaseSingleton;
   userId: string;
   hide = true;
-  
-  filters = { 
+
+  filters = {
     action: false,
     adventure: false,
     animation: false,
@@ -48,28 +48,28 @@ export default class ModAddMovie extends Vue {
     science_fiction: false,
     thriller: false,
     war: false,
-    western: false, 
+    western: false
   };
   filtersMenu = [
-    {label: "Action", model: "action"},
-    {label: "Adventure", model: "adventure"},
-    {label: "Animation", model: "animation"},
-    {label: "Children", model: "children"},
-    {label: "Crime", model: "crime"},
-    {label: "Comedy", model: "comedy"},
-    {label: "Documentary", model: "documentary"},
-    {label: "Drama", model: "drama"},
-    {label: "Family", model: "family"},
-    {label: "Fantasy", model: "fantasy"},
-    {label: "History", model: "history"},
-    {label: "Horror", model: "horror"},
-    {label: "Music", model: "music"},
-    {label: "Mystery", model: "mystery"},
-    {label: "Romance", model: "romance"},
-    {label: "Science Fiction", model: "science_fiction"},
-    {label: "Thriller", model: "thriller"},
-    {label: "War", model:"war"},
-    {label: "Western", model:"western"},
+    { label: "Action", model: "action" },
+    { label: "Adventure", model: "adventure" },
+    { label: "Animation", model: "animation" },
+    { label: "Children", model: "children" },
+    { label: "Crime", model: "crime" },
+    { label: "Comedy", model: "comedy" },
+    { label: "Documentary", model: "documentary" },
+    { label: "Drama", model: "drama" },
+    { label: "Family", model: "family" },
+    { label: "Fantasy", model: "fantasy" },
+    { label: "History", model: "history" },
+    { label: "Horror", model: "horror" },
+    { label: "Music", model: "music" },
+    { label: "Mystery", model: "mystery" },
+    { label: "Romance", model: "romance" },
+    { label: "Science Fiction", model: "science_fiction" },
+    { label: "Thriller", model: "thriller" },
+    { label: "War", model: "war" },
+    { label: "Western", model: "western" }
   ];
   movie_title = "";
   image_url = "";
@@ -88,8 +88,12 @@ export default class ModAddMovie extends Vue {
     this.movie_description = this.movie_description.trim();
     this.image_url = this.image_url.trim();
     // check if fields are blank
-    if (this.movie_title === "" || this.movie_description === "" || this.image_url === "") {
-      alert("fields cannot be left blank")
+    if (
+      this.movie_title === "" ||
+      this.movie_description === "" ||
+      this.image_url === ""
+    ) {
+      alert("fields cannot be left blank");
       return false;
     }
     // check if image url is valid
@@ -116,13 +120,13 @@ export default class ModAddMovie extends Vue {
       if (this.filters[key] === true) {
         trueFilters[key] = true;
       }
-    })
+    });
     let movie = {
       title: this.movie_title,
       genres: trueFilters,
       overview: this.movie_description,
-      poster: this.image_url,
-    }
+      poster: this.image_url
+    };
     return movie;
   }
 
@@ -152,9 +156,8 @@ export default class ModAddMovie extends Vue {
       method: "POST",
       mode: "cors",
       redirect: "follow",
-      referrer: "no-referrer",
-    })
-    .then(response => response.json());
+      referrer: "no-referrer"
+    }).then(response => response.json());
   }
 }
 

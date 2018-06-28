@@ -121,10 +121,7 @@ export default class DataModel {
         movie.key = snap.id;
         movie = this.configureData(movie);
         movies.push(movie as Movie);
-      } else if (
-        this.type === "mymovies" ||
-        this.type === "myreviews"
-      ) {
+      } else if (this.type === "mymovies" || this.type === "myreviews") {
         const key = snap.id;
         const movie = await this.getMovie(key);
         movies.push(movie as Movie);

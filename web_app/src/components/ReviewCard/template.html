@@ -1,12 +1,12 @@
 
-  <div v-if="review" id="reviewcard" class="reviewcard">
-      <label class="label-rating">Your Rating: </label>
-      <div class="stars">
-          <i v-for="s in 5" class="material-icons">
-            <span v-if="review.rating<s">star_border</span>
-            <span v-else-if="review.rating >= s">star</span>
-          </i>
-      </div>
-      <label class="label-text">Your Review: </label>
-      <label class="reviewtext">{{review.review_text}}</label>
+<div v-if="review" id="reviewcard" class="reviewcard">
+  <label class="label-rating">Your Rating: </label>
+  <div class="stars">
+    <i v-for="s in 5" class="material-icons">
+      <span v-if="review.rating<s">star_border</span>
+      <span v-else-if="review.rating >= s">star</span>
+    </i>
+  </div>
+  <label class="label-text">Your Review: </label>
+  <label class="reviewtext">{{review.review_text}}</label>
 </div>

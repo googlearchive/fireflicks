@@ -1,41 +1,37 @@
-  <div id="toolbar"> 
-    <h1 class="fire">Fire</h1>  
-    <img src="../../assets/Popcorn_Sparky.png" style="width:100px;height:100px">
-    <h1 class="flicks">Flicks</h1>
-      <div class="topnav" id="myTopnav" :class="{responsive: isResponsive, clickedgenre: isGenreClicked, clickedmovies: isMyMoviesClicked, clickedadmin: isAdminClicked}" >
-          <a class="icon" @click="isResponsive = !isResponsive">&#9776;</a>
-          <router-link to="/"class="display-when-collapsed">Home</router-link>
-          <!-- Link to the movies the user saved -->
-          <div class="dropdown-my-movies">
-              <button class="dropbtn-mymovies" @click="isMyMoviesClicked = !isMyMoviesClicked">My Movies</button>
-              <div class="dropdown-content-mymovies">
-                  <router-link class="mymovies" to="/mymovies">
-                    Saved
-                  </router-link>
-                  <router-link class="myreviews" to="/myreviews">
-                    My Reviews
-                  </router-link>
-              </div>
-            </div>
-          <div class="dropdown-admin" :class="{hidden: !isMod, hide: isHidden}">
-            <button class="dropbtn-admin" @click="isAdminClicked = !isAdminClicked">Moderator</button>
-            <div class="dropdown-content-admin">
-                <router-link class="mod-add-movie" to="/mod-add-movie" :class="{hidden: !isAdmin}">
-                  Add&nbsp;New&nbsp;Movie
-                </router-link>
-                <router-link class="mod-add-mod" to="/mod-add-mod" :class="{hidden: !isAdmin}">
-                  Add&nbsp;New&nbsp;Moderator
-                </router-link>
-            </div>
-          </div>
-          <div class="dropdown" :class="{hide: isHidden}">
-            <button class="dropbtn" @click="isGenreClicked = !isGenreClicked">Filter By Genre</button>
-            <form class="dropdown-content">
-              <div v-for="genre in filtersMenu" class="checks">
-              <label class="container">
-                  <input type="radio" name="genre" @click="didSelect(genre.model)" class="checkmark">{{genre.label}}</label>
-              </div>
-            </form>
-          </div>
-          <div class="login" @click="changeLoginStatus()">{{loginTitle}}</div>          </div>
+<div id="toolbar"> 
+  <h1 class="fire">Fire</h1>  
+  <img src="../../assets/Popcorn_Sparky.png" style="width:100px;height:100px">
+  <h1 class="flicks">Flicks</h1>
+  <div class="topnav" id="myTopnav" :class="{responsive: isResponsive, clickedgenre: isGenreClicked, clickedmovies: isMyMoviesClicked, clickedadmin: isAdminClicked}" >
+    <a class="icon" @click="isResponsive = !isResponsive">&#9776;</a>
+    <router-link to="/"class="display-when-collapsed">Home</router-link>
+    <div class="dropdown-my-movies">
+      <button class="dropbtn-mymovies" @click="isMyMoviesClicked = !isMyMoviesClicked">My Movies</button>
+      <div class="dropdown-content-mymovies">
+        <router-link class="mymovies" to="/mymovies">Saved</router-link>
+        <router-link class="myreviews" to="/myreviews">My Reviews</router-link>
+      </div>
+    </div>
+    <div class="dropdown-admin" :class="{hidden: !isMod, hide: isHidden}">
+      <button class="dropbtn-admin" @click="isAdminClicked = !isAdminClicked">Moderator</button>
+      <div class="dropdown-content-admin">
+        <router-link class="mod-add-movie" to="/mod-add-movie" :class="{hidden: !isAdmin}">
+          Add&nbsp;New&nbsp;Movie
+        </router-link>
+        <router-link class="mod-add-mod" to="/mod-add-mod" :class="{hidden: !isAdmin}">
+          Add&nbsp;New&nbsp;Moderator
+        </router-link>
+      </div>
+    </div>
+    <div class="dropdown" :class="{hide: isHidden}">
+      <button class="dropbtn" @click="isGenreClicked = !isGenreClicked">Filter By Genre</button>
+      <form class="dropdown-content">
+        <div v-for="genre in filtersMenu" class="checks">
+          <label class="container">
+          <input type="radio" name="genre" @click="didSelect(genre.model)" class="checkmark">{{genre.label}}</label>
+        </div>
+      </form>
+    </div>
+    <div class="login" @click="changeLoginStatus()">{{loginTitle}}</div>
   </div>
+</div>

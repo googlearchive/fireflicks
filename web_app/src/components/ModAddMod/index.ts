@@ -20,7 +20,7 @@ import FirebaseSingleton from "../../services/FirebaseSingleton";
 
 @Component({
   components: {
-    Toolbar, 
+    Toolbar
   }
 })
 export default class ModAddMod extends Vue {
@@ -42,7 +42,7 @@ export default class ModAddMod extends Vue {
     this.user_email = this.user_email.trim();
     // check if fields are blank
     if (this.user_email === "") {
-      alert("fields cannot be left blank")
+      alert("fields cannot be left blank");
       return false;
     }
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -56,12 +56,12 @@ export default class ModAddMod extends Vue {
   }
 
   async onAddModerator() {
-    const token = await this.fst.auth.currentUser.getIdToken()
+    const token = await this.fst.auth.currentUser.getIdToken();
     const user = {
       email: this.user_email
-    }
+    };
     if (this.verifyEmail()) {
-      await this.postData(`${this.base_url}admin_users`, user, token)
+      await this.postData(`${this.base_url}admin_users`, user, token);
       alert(`Successfully Added new Moderator ${this.user_email}`);
       this.user_email = "";
     }
@@ -78,9 +78,8 @@ export default class ModAddMod extends Vue {
       method: "POST",
       mode: "cors",
       redirect: "follow",
-      referrer: "no-referrer",
-    })
-    .then(response => response.json());
+      referrer: "no-referrer"
+    }).then(response => response.json());
   }
 }
 

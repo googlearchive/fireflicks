@@ -14,8 +14,8 @@
 
 import Vue from "vue";
 import VueRouter from "vue-router";
-import * as Raven from 'raven-js';
-import * as RavenVue from 'raven-js/plugins/vue';
+import * as Raven from "raven-js";
+import * as RavenVue from "raven-js/plugins/vue";
 import App from "./components/App";
 import MyMovies from "./components/MyMovies";
 import MyReviews from "./components/MyReviews";
@@ -24,12 +24,12 @@ import AdminAddAdmin from "./components/ModAddMod";
 
 console.log(Raven);
 
-Raven
-    .config('https://30c86142720c4d90813593ed24717f33@sentry.io/1196339')
-    .addPlugin(RavenVue, Vue)
-    .install();
-    
-document.location.port == "5000" && alert("Please use localhost:8080 for debugging.")
+Raven.config("https://30c86142720c4d90813593ed24717f33@sentry.io/1196339")
+  .addPlugin(RavenVue, Vue)
+  .install();
+
+document.location.port == "5000" &&
+  alert("Please use localhost:8080 for debugging.");
 
 Vue.use(VueRouter);
 
@@ -40,7 +40,7 @@ const router = new VueRouter({
     { path: "/mymovies", component: MyMovies },
     { path: "/myreviews", component: MyReviews },
     { path: "/mod-add-movie", component: AdminAddMovie },
-    { path: "/mod-add-mod", component: AdminAddAdmin },
+    { path: "/mod-add-mod", component: AdminAddAdmin }
   ]
 });
 

@@ -22,7 +22,7 @@ type Movie = {
   averageRating: number;
   overview: string;
   poster: string;
-  genres: {string: boolean};
+  genres: { string: boolean };
   genreList: string;
   key: string;
 };
@@ -31,23 +31,20 @@ type Review = {
   rating: number;
 };
 
-@Component({
-})
+@Component({})
 export default class Reviewcard extends Vue {
-  name="reviewcard";
+  name = "reviewcard";
   fst: FirebaseSingleton;
   userId: string;
-  isMyMovie=false;
-  libraryMessage="Add to Library";
-  review_text: string="";
-  
+  isMyMovie = false;
+  libraryMessage = "Add to Library";
+  review_text: string = "";
+
   async mounted() {}
 
-  @Prop()
-  movie: Movie;
+  @Prop() movie: Movie;
 
-  @Prop()
-  review: Review;
+  @Prop() review: Review;
 
   async changeLibrary(isMyMovie: boolean) {
     // if movie is in collection, remove it
@@ -58,20 +55,26 @@ export default class Reviewcard extends Vue {
       this.addToLibrary();
     }
   }
-  
-   async addToLibrary() {
-      this.userId = this.fst.auth.currentUser.uid;
-      await this.fst.firestore.collection("users").doc(`${this.userId}/movies/${this.movie.key}`).set(this.movie, { merge: true });
-      alert("added to collection");
-    }
-  
-    async removeFromLibrary() {
-      this.userId = this.fst.auth.currentUser.uid;
-      await this.fst.firestore.collection("users").doc(`${this.userId}/movies/${this.movie.key}`).delete();
-      alert("removed from collection");
-    }
 
-    rating: number=1;
+  async addToLibrary() {
+    this.userId = this.fst.auth.currentUser.uid;
+    await this.fst.firestore
+      .collection("users")
+      .doc(`${this.userId}/movies/${this.movie.key}`)
+      .set(this.movie, { merge: true });
+    alert("added to collection");
   }
+
+  async removeFromLibrary() {
+    this.userId = this.fst.auth.currentUser.uid;
+    await this.fst.firestore
+      .collection("users")
+      .doc(`${this.userId}/movies/${this.movie.key}`)
+      .delete();
+    alert("removed from collection");
+  }
+
+  rating: number = 1;
+}
 
 require("./template.html")(Reviewcard);
