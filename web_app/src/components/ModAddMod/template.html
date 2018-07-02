@@ -1,0 +1,8 @@
+<div id="admin">
+  <toolbar :hide="hide"></toolbar>
+  <div class="newadmin"> 
+    <label class="instructions">Fill out this form to grant permission to another user to add new movies and add new moderators</label>
+    <input class="userEmail"  v-model="user_email" placeholder="email">
+    <button class="submitNewUser" @click="onAddModerator()">Submit</button>
+  </div>
+</div>

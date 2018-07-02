@@ -20,10 +20,10 @@ import FirebaseSingleton from "../../services/FirebaseSingleton";
 
 @Component({
   components: {
-    Toolbar, 
+    Toolbar
   }
 })
-export default class AdminAddAdmin extends Vue {
+export default class ModAddMod extends Vue {
   base_url = "http://localhost:3000/";
   fst: FirebaseSingleton;
   userId: string;
@@ -42,7 +42,7 @@ export default class AdminAddAdmin extends Vue {
     this.user_email = this.user_email.trim();
     // check if fields are blank
     if (this.user_email === "") {
-      alert("fields cannot be left blank")
+      alert("fields cannot be left blank");
       return false;
     }
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -55,15 +55,14 @@ export default class AdminAddAdmin extends Vue {
     return true;
   }
 
-
-  async onAddAdminUser() {
-    const token = await this.fst.auth.currentUser.getIdToken()
+  async onAddModerator() {
+    const token = await this.fst.auth.currentUser.getIdToken();
     const user = {
       email: this.user_email
-    }
+    };
     if (this.verifyEmail()) {
-      const result = await this.postData(`${this.base_url}admin_users`, user, token)
-      alert(`Successfully Added new Admin ${this.user_email}`);
+      await this.postData(`${this.base_url}admin_users`, user, token);
+      alert(`Successfully Added new Moderator ${this.user_email}`);
       this.user_email = "";
     }
   }
@@ -79,10 +78,9 @@ export default class AdminAddAdmin extends Vue {
       method: "POST",
       mode: "cors",
       redirect: "follow",
-      referrer: "no-referrer",
-    })
-    .then(response => response.json());
+      referrer: "no-referrer"
+    }).then(response => response.json());
   }
 }
 
-require("./template.html")(AdminAddAdmin);
+require("./template.html")(ModAddMod);

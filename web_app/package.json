@@ -5,7 +5,7 @@
   "author": "Jen Person <personjennifer@google.com>",
   "private": true,
   "scripts": {
-    "fmt": "prettier --write src/**/**.{ts,scss,js} test/**/**.ts test/**/**.js *.js",
+    "fmt": "prettier --write src/**.{ts,scss,js} src/**/**/**.{ts,scss,js} test/**/**.ts test/**/**.js *.js",
     "dev": "concurrently -k --names 'FIREBASE,WEBPACK' 'firebase serve' 'cross-env NODE_ENV=development webpack-dev-server --hot'",
     "build": "npm run fmt && cross-env NODE_ENV=production webpack --progress --hide-modules",
     "test": "npm run fmt && jest test --no-cache || true"
