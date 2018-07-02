@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-let datamodel: DataModel;
 // Typings for modules imported dynamically
 import FirebaseAppModule = require("firebase/app");
 import FirebaseSingleton from "./FirebaseSingleton";
@@ -40,18 +39,6 @@ export default class DataModel {
     this.fst = await FirebaseSingleton.GetInstance();
   }
 
-  // // update the current filter as it appears on the screen
-  // updateCurrentFilter(currentFilter: string, genre: string) {
-  //   const genreCapitalized = genre.charAt(0).toUpperCase() + genre.slice(1);
-  //   // if this is the first filter, don't add a comma before
-  //   if (currentFilter === "") {
-  //     currentFilter = currentFilter + `- ${genreCapitalized}`;
-  //   } else {
-  //     currentFilter = currentFilter + `, ${genreCapitalized}`;
-  //   }
-  //   return currentFilter;
-  // }
-
   async loadMovies(
     loadMore: boolean,
     collection: string,
@@ -64,8 +51,6 @@ export default class DataModel {
   ) {
     this.type = type;
     let query: FirestoreModule.Query;
-    //.orderBy("title")
-    //.orderBy("averageRating", "desc");
     // start with the last movie, or remove all movies
     if (loadMore && lastMovie) {
       query = this.fst.firestore
@@ -136,11 +121,7 @@ export default class DataModel {
         movie.key = snap.id;
         movie = this.configureData(movie);
         movies.push(movie as Movie);
-      } else if (
-        this.type === "mymovies" ||
-        this.type === "myreviews" ||
-        this.type === "recommends"
-      ) {
+      } else if (this.type === "mymovies" || this.type === "myreviews") {
         const key = snap.id;
         const movie = await this.getMovie(key);
         movies.push(movie as Movie);
@@ -208,26 +189,26 @@ export default class DataModel {
   }
 
   async updateAnonStatus() {
-    let isAdmin = false;
+    let isMod = false;
     this.isAnon = !this.isAnon;
-    // if user is signed in, check if admin
+    // if user is signed in, check if moderator
     if (!this.isAnon) {
-      isAdmin = await this.checkIsAdmin();
+      isMod = await this.checkIsMod();
     }
-    return isAdmin;
+    return isMod;
   }
 
-  // return true current user has the admin claim
-  async checkIsAdmin() {
-    let isAdmin = false;
+  // return true current user has the moderator claim
+  async checkIsMod() {
+    let isMod = false;
     this.fst = await FirebaseSingleton.GetInstance();
     const token = await this.fst.auth.currentUser.getIdToken();
     // Parse the ID token.
     const payload = JSON.parse(atob(token.split(".")[1]));
-    // Confirm the user is an Admin.
-    if (!!payload["admin"]) {
-      isAdmin = true;
+    // Confirm the user is a Moderator.
+    if (!!payload["moderator"]) {
+      isMod = true;
     }
-    return isAdmin;
+    return isMod;
   }
 }

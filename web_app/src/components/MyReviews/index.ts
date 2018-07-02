@@ -29,7 +29,7 @@ type Movie = {
   averageRating: number;
   overview: string;
   poster: string;
-  genres: {string: boolean};
+  genres: { string: boolean };
   genreList: string;
   key: string;
 };
@@ -40,11 +40,11 @@ type Review = {
 
 @Component({
   components: {
-    Toolbar, 
-    Moviecard, 
-    MoreInfoMoviecard, 
+    Toolbar,
+    Moviecard,
+    MoreInfoMoviecard,
     AddReviewModal,
-    Reviewcard,
+    Reviewcard
   }
 })
 export default class MyReviews extends Vue {
@@ -54,14 +54,13 @@ export default class MyReviews extends Vue {
   fst: FirebaseSingleton;
   lastMovie: FirestoreModule.DocumentSnapshot;
   dm: DataModel;
-  more_movies_found=false;
-  no_movies_found_error_message="No more movies match your criteria";
+  more_movies_found = false;
+  no_movies_found_error_message = "No more movies match your criteria";
 
   async mounted() {
     this.dm = new DataModel();
     this.fst = await FirebaseSingleton.GetInstance();
     await this.dm.init();
- 
   }
 
   async loadMyMovies(loadMore: boolean) {
@@ -70,19 +69,25 @@ export default class MyReviews extends Vue {
       return;
     }
     const userId = this.fst.auth.currentUser.uid;
-    const collection = `users/${userId}/ratings`
+    const collection = `users/${userId}/ratings`;
     const type = "myreviews";
-    const updateResult = await this.dm.loadMovies(loadMore, collection, this.lastMovie, 
-      this.filter, this.more_movies_found, 
-      this.movies, this.reviews,
-      type,
-    )
-    this.more_movies_found = updateResult.more_movies_found;    if (this.more_movies_found) {
+    const updateResult = await this.dm.loadMovies(
+      loadMore,
+      collection,
+      this.lastMovie,
+      this.filter,
+      this.more_movies_found,
+      this.movies,
+      this.reviews,
+      type
+    );
+    this.more_movies_found = updateResult.more_movies_found;
+    if (this.more_movies_found) {
       this.lastMovie = updateResult.lastMovie;
       this.movies = updateResult.movies;
       this.reviews = updateResult.reviews;
       if (!this.more_movies_found && !loadMore) {
-        this.movies = updateResult.movies
+        this.movies = updateResult.movies;
       }
     }
   }
@@ -111,7 +116,7 @@ export default class MyReviews extends Vue {
   topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }   
+  }
 }
 
 require("./template.html")(MyReviews);

@@ -1,21 +1,21 @@
 
-  <div class="modal">
-    <div id="moviecard" class="movie">
-      <div class="close"> 
-          <i class="material-icons" @click="close()">close</i>
-      </div>
-      <h3 class=title>{{movie.title}}</h3>
-      <img :src="movie.poster">
-      <div class="description">{{movie.overview}}</div>
-      <div class="genres">{{movie.genreList}}</div>
-      <label class="label-rating">{{update}}Rating: </label>
-      <div class="stars">
-          <i v-for="s in 5" class="material-icons">
-            <span v-if="rating<s" @click="rating=s">star_border</span>
-            <span v-else-if="rating >= s" @click="rating=s">star</span>
-          </i>
-      </div>
-      <textarea class="reviewtext"  v-model="review_text" placeholder="Review"></textarea>
-      <button class="submit" @click="onPublishReview()">Submit</button>
+<div class="modal">
+  <div id="moviecard" class="movie">
+    <div class="close"> 
+      <i class="material-icons" @click="close()">close</i>
     </div>
+    <h3 class=title>{{movie.title}}</h3>
+    <img :src="movie.poster">
+    <div class="description">{{movie.overview}}</div>
+    <div class="genres">{{movie.genreList}}</div>
+    <label class="label-rating">{{update}}Rating: </label>
+    <div class="stars">
+      <i v-for="s in 5" class="material-icons">
+        <span v-if="rating<s" @click="rating=s">star_border</span>
+        <span v-else-if="rating >= s" @click="rating=s">star</span>
+      </i>
+    </div>
+    <textarea class="reviewtext"  v-model="review_text" placeholder="Review"></textarea>
+    <button class="submit" @click="onPublishReview()">Submit</button>
+  </div>
 </div>

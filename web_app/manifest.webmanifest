@@ -13,6 +13,5 @@
   "related_applications": [{
     "platform": "web",
     "url": "https://github.com/abehaskins/ts-bp-vu"
-  }],
-  "gcm_sender_id": "103953800507"
+  }]
 }
