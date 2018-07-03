@@ -84,7 +84,7 @@ export default class Toolbar extends Vue {
   accidentally clicking in the wrong place */
   isGenreClicked = false;
   isHidden = false;
-  isAdmin = false;
+  isMod = false;
   isAdminClicked = false;
   isMyMoviesClicked = false;
   loginTitle = "Log In";
@@ -172,7 +172,7 @@ export default class Toolbar extends Vue {
       if (!user) {
         await fst.auth.signInAnonymously();
         _this.anonUID = fst.auth.currentUser.uid;
-        _this.isAdmin = false;
+        _this.isMod = false;
         _this.$emit("login");
       } else {
         // Otherwise render out the info
@@ -186,7 +186,7 @@ export default class Toolbar extends Vue {
   async displayUserInfo() {
     if (!this.fst.auth.currentUser.isAnonymous) {
       this.loginTitle = "Log Out";
-      this.isAdmin = await this.dm.checkIsMod();
+      this.isMod = await this.dm.checkIsMod();
     } else {
       this.loginTitle = "Log In";
     }
@@ -203,7 +203,7 @@ export default class Toolbar extends Vue {
       .then(async function(result) {
         // If we succeed, we've now modified our user (no longer anonymous)
         // so we re-render our info
-        _this.isAdmin = await _this.dm.checkIsMod();
+        _this.isMod = await _this.dm.checkIsMod();
         _this.loginTitle = "Log Out";
       })
       .catch(async function(error) {
@@ -213,7 +213,7 @@ export default class Toolbar extends Vue {
         await fst.auth.signInWithCredential(error.credential);
         _this.uid = fst.auth.currentUser.uid;
         _this.writeMoviesToNewUser(uid, movies);
-        _this.isAdmin = await _this.dm.checkIsMod();
+        _this.isMod = await _this.dm.checkIsMod();
         _this.loginTitle = "Log Out";
       });
   }
@@ -222,7 +222,7 @@ export default class Toolbar extends Vue {
     this.fst = await FirebaseSingleton.GetInstance();
     await this.fst.auth.signOut();
     this.loginTitle = "Log In";
-    this.isAdmin = false;
+    this.isMod = false;
   }
 }
 
