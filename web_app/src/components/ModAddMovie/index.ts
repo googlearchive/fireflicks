@@ -139,10 +139,12 @@ export default class ModAddMovie extends Vue {
     const movie = await this.getMovie();
     const token = await this.fst.auth.currentUser.getIdToken();
     const result = await this.postData(`${this.base_url}movies`, movie, token);
-    alert(result);
-    this.movie_title = "";
-    this.movie_description = "";
-    this.image_url = "";
+    if (result) {
+      alert("New Movie Created!");
+      this.movie_title = "";
+      this.movie_description = "";
+      this.image_url = "";
+    }
   }
 
   async postData(url: string, data: {}, token: string) {
