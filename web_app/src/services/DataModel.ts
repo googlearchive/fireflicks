@@ -63,13 +63,9 @@ export default class DataModel {
       reviews = [];
       // start at a random point in the database when viewing the whole movie list
       if (this.type === "app") {
-        const randomTMDB = (
-          Math.floor(Math.random() * 90000) + 10000
-        ).toString();
         query = this.fst.firestore
           .collection(collection)
           .orderBy("tmdb")
-          .startAfter(randomTMDB)
           .limit(10);
       } else {
         query = this.fst.firestore.collection(collection).limit(10);
