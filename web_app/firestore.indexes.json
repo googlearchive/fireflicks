@@ -1,44 +1,137 @@
 {
   "indexes": [
+
     {
-        "collectionId": "movies",
+    "collectionId": "movies",
         "fields": [
           { "fieldPath": "genres.action", "mode": "ASCENDING"},
-          { "fieldPath": "genres.action", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" } 
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.adventure", "mode": "ASCENDING"},
-          { "fieldPath": "genres.adventure", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.animation", "mode": "ASCENDING"},
-          { "fieldPath": "genres.animation", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
+          { "fieldPath": "genres.children", "mode": "ASCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.crime", "mode": "ASCENDING"},
-          { "fieldPath": "genres.crime", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.comedy", "mode": "ASCENDING"},
-          { "fieldPath": "genres.comedy", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.documentary", "mode": "ASCENDING"},
-          { "fieldPath": "genres.documentary", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.drama", "mode": "ASCENDING"},
-          { "fieldPath": "genres.drama", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.family", "mode": "ASCENDING"},
-          { "fieldPath": "genres.family", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.fantasy", "mode": "ASCENDING"},
-          { "fieldPath": "genres.fantasy", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.history", "mode": "ASCENDING"},
-          { "fieldPath": "genres.history", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.horror", "mode": "ASCENDING"},
-          { "fieldPath": "genres.horror", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.music", "mode": "ASCENDING"},
-          { "fieldPath": "genres.music", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },    
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.mystery", "mode": "ASCENDING"},
-          { "fieldPath": "genres.mystery", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.romance", "mode": "ASCENDING"},
-          { "fieldPath": "genres.romance", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.scifi", "mode": "ASCENDING"},
-          { "fieldPath": "genres.scifi", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.thriller", "mode": "ASCENDING"},
-          { "fieldPath": "genres.thriller", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.war", "mode": "ASCENDING"},
-          { "fieldPath": "genres.war", "mode": "DESCENDING"},
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
+        ]
+    },
+    {
+    "collectionId": "movies",
+        "fields": [
           { "fieldPath": "genres.western", "mode": "ASCENDING"},
-          { "fieldPath": "genres.western", "mode": "DESCENDING"}
+          { "fieldPath": "tmdb", "mode": "ASCENDING" }
         ]
     }
   ]
