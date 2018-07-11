@@ -41,9 +41,9 @@ function checkNonEmptyString(value: any, field: string): string {
   return value as string;
 }
 
-function checkOptionalString(value: any, field: string): (string | undefined) {
+function checkOptionalString(value: any, field: string): string {
   if (typeof value === 'undefined' || value === '') {
-    return undefined;
+    return '';
   }
   if (typeof value !== 'string') {
     throw new Error(`${field} must be a string`);
