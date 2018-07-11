@@ -132,34 +132,17 @@ export default class ModAddMovie extends Vue {
 
   // write movie to database
   async onPublishMovie() {
-    // if fields aren't correct, exit function
-    if (!this.verifyFields()) {
-      return;
-    }
-    const movie = await this.getMovie();
-    const token = await this.fst.auth.currentUser.getIdToken();
-    const result = await this.postData(`${this.base_url}movies`, movie, token);
-    if (result) {
-      alert("New Movie Created!");
-      this.movie_title = "";
-      this.movie_description = "";
-      this.image_url = "";
-    }
+    // TODO: 
+    // Get the movie information
+    // Get the current user's ID token
+    // Make post request
+    // Alert result
   }
 
   async postData(url: string, data: {}, token: string) {
-    return fetch(url, {
-      body: JSON.stringify(data),
-      credentials: "same-origin",
-      headers: {
-        "X-Firebase-ID-Token": token,
-        "content-type": "application/json"
-      },
-      method: "POST",
-      mode: "cors",
-      redirect: "follow",
-      referrer: "no-referrer"
-    }).then(response => response.json());
+    // TODO:
+    // Create post request
+    // Include movie in body of request
   }
 }
 
