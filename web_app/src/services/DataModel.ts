@@ -61,15 +61,7 @@ export default class DataModel {
       // clear out the current movies
       movies = [];
       reviews = [];
-      // start at a random point in the database when viewing the whole movie list
-      if (this.type === "app") {
-        query = this.fst.firestore
-          .collection(collection)
-          .orderBy("tmdb")
-          .limit(10);
-      } else {
-        query = this.fst.firestore.collection(collection).limit(10);
-      }
+      query = this.fst.firestore.collection(collection).limit(10);
     }
     const result = this.apply_query_filter(query, filter);
     query = result.query;
