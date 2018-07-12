@@ -96,21 +96,7 @@ export default class ModAddMovie extends Vue {
       alert("fields cannot be left blank");
       return false;
     }
-    // check if image url is valid
-    if (!this.imageExists(this.image_url)) {
-      alert("not a valid url");
-      return false;
-    }
     return true;
-  }
-
-  imageExists(image_url) {
-    let http = new XMLHttpRequest();
-
-    http.open("HEAD", image_url, false);
-    http.send();
-
-    return http.status != 404;
   }
 
   async getMovie() {
