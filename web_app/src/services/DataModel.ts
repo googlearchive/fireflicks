@@ -194,7 +194,7 @@ export default class DataModel {
     // Parse the ID token.
     const payload = JSON.parse(atob(token.split(".")[1]));
     // Confirm the user is a Moderator.
-    if (!!payload["moderator"]) {
+    if (payload["moderator"]) {
       isMod = true;
     }
     return isMod;
